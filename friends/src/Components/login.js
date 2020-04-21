@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios'
 
 class Login extends React.Component {
     state = {
@@ -17,11 +18,22 @@ class Login extends React.Component {
         })
     }
 
+    handleLogin = event =>{
+        event.preventDefault();
+        axios
+        .post('http://localhost:5000/api/login', this.state.credentials)
+        .then(res => {
+            localStorage.setItem('token', JSON.stringify(res.data.payload))
+            this.props.history.push('/protected')
+        })
+        .catch(err => console.log(err))
+    }
+
 
     render() {
         return (
             <div className="formDiv">
-                <form>
+                <form onSubmit= {this.handleLogin} >
                     <label htmlFor= "username" name= "username" >Username*</label> 
                     <br/>
 
@@ -35,7 +47,7 @@ class Login extends React.Component {
                     <label htmlFor= "password" name= "password" >Password*</label> 
                     <br/>
                     <input
-                    type= "text"
+                    type= "password"
                     name= "password"
                     value= {this.state.credentials.password}
                     onChange= {this.handleChange}
