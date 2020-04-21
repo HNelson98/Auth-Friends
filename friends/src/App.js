@@ -1,16 +1,16 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-
+import Login from './Components/login'
 
 function App() {
   return (
     <Router>
       <div className="App">
-        <switch>
+        <Switch>
           <Route path= "/login" component={Login} />
-        </switch>
+          <Route component={Login} />
+        </Switch>
 
       </div>
     </Router>
