@@ -8,6 +8,15 @@ class Login extends React.Component {
         }
     };
 
+    handleChange = event =>{
+        this.setState({
+            credentials: {
+                ...this.state.credentials,
+                [event.target.name]: event.target.value 
+            }
+        })
+    }
+
 
     render() {
         return (
@@ -20,6 +29,7 @@ class Login extends React.Component {
                     type= "text"
                     name= "username"
                     value= {this.state.credentials.username}
+                    onChange= {this.handleChange}
                     />
                     <br/>
                     <label htmlFor= "password" name= "password" >Password*</label> 
@@ -28,6 +38,7 @@ class Login extends React.Component {
                     type= "text"
                     name= "password"
                     value= {this.state.credentials.password}
+                    onChange= {this.handleChange}
                     />
                     <br/>
                     <button>Log In</button>
