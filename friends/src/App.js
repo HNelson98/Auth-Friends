@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-import Login from './Components/login'
-import FriendsList from './Components/friendsList'
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Login from './Components/Login'
+import FriendsList from './Components/FriendsList'
 import PrivateRoute from './Components/ProtectedRoute';
 
 function App() {
