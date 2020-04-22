@@ -1,4 +1,6 @@
 import React from 'react'
+import { axiosWithAuth } from '../utills/axiosWithAuth';
+
 
 
 class AddFriend extends React.Component {
@@ -10,18 +12,36 @@ class AddFriend extends React.Component {
     }
     handleChange = event => {
         this.setState({
-            
-                ...this.state,
-                [event.target.name]: event.target.value
-            
+
+            ...this.state,
+            [event.target.name]: event.target.value
+
         })
     }
+
+    handleAdd = event => {
+        event.preventDefault();
+        axiosWithAuth()
+            .post('/api/friends', this.state)
+            .then(res => {
+                this.setState({
+                    id: Date.now(),
+                    name: '',
+                    age: '',
+                    email: ''
+                })
+            })
+            .catch(err => console.log(err));
+
+    }
+
+
     render() {
         return (
             <div>
                 <h1>Add A Friend</h1>
                 <div className="formDiv">
-                    <form>
+                    <form onSubmit= {this.handleAdd}>
                         <label htmlFor="name" name="name" >Name*</label>
                         <br />
 
