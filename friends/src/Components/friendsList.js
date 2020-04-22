@@ -4,7 +4,11 @@ import FriendCard from './FriendCard'
 
 const FriendsList = () => {
 const[state, setState] = useState ({
-    friends: []
+    friends: [],
+    id: Date.now(),
+    name: '',
+    age: '',
+    email: '',
 }
 )
     useEffect(() => {
@@ -14,7 +18,6 @@ const[state, setState] = useState ({
                 setState({
                     friends: res.data
                 })
-
             })
             .catch(err => console.log(err))
     }, [])
@@ -23,7 +26,6 @@ const[state, setState] = useState ({
 return(
         <div>
             <h1>Here Are Your Friends!</h1>
-            
             <div>
                 {
                     state.friends.map(item => (
